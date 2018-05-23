@@ -1,0 +1,28 @@
+nodes:
+  - address: 172.19.8.100
+    hostname_override: ros00
+    user: rancher
+    role: [controlplane,etcd,worker]
+    ssh_key_path: .vagrant/machines/ros00/virtualbox/private_key
+  - address: 172.19.8.101
+    hostname_override: ros01
+    user: rancher
+    role: [worker]
+    ssh_key_path: .vagrant/machines/ros01/virtualbox/private_key
+  - address: 172.19.8.102
+    hostname_override: ros02
+    user: rancher
+    role: [worker]
+    ssh_key_path: .vagrant/machines/ros02/virtualbox/private_key
+
+services:
+  kube-api:
+    pod_security_policy: true
+
+ingress:
+  provider: nginx
+  extra_args:
+    enable-ssl-passthrough: ""
+
+authorization:
+  mode: rbac
